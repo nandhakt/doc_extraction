@@ -21,78 +21,90 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for beautiful, modern styling
+# Custom CSS for professional light theme
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
     
-    /* Root Variables */
+    /* Root Variables - Professional Light Theme */
     :root {
-        --bg-primary: #0a0a0f;
-        --bg-secondary: #12121a;
-        --bg-tertiary: #1a1a24;
-        --accent-primary: #6366f1;
-        --accent-secondary: #818cf8;
-        --accent-glow: rgba(99, 102, 241, 0.3);
-        --text-primary: #f1f5f9;
-        --text-secondary: #94a3b8;
-        --success: #10b981;
-        --warning: #f59e0b;
-        --error: #ef4444;
-        --border-color: #2d2d3a;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --accent-primary: #1e40af;
+        --accent-secondary: #3b82f6;
+        --accent-light: rgba(30, 64, 175, 0.08);
+        --accent-hover: rgba(30, 64, 175, 0.12);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --success: #059669;
+        --success-light: rgba(5, 150, 105, 0.1);
+        --warning: #d97706;
+        --warning-light: rgba(217, 119, 6, 0.1);
+        --error: #dc2626;
+        --error-light: rgba(220, 38, 38, 0.1);
+        --border-color: #e2e8f0;
+        --border-focus: #1e40af;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
     }
     
     /* Global Styles */
     .stApp {
-        background: linear-gradient(135deg, var(--bg-primary) 0%, #0d0d14 50%, #0a0a12 100%);
-        font-family: 'Outfit', sans-serif;
+        background: var(--bg-secondary);
+        font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
     .main .block-container {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
         max-width: 100%;
     }
     
     /* Header Styling */
     .main-header {
         text-align: center;
-        padding: 1.5rem 0;
-        margin-bottom: 2rem;
-        background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+        padding: 1.75rem 0;
+        margin-bottom: 1.5rem;
+        background: var(--bg-primary);
         border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
     }
     
     .main-header h1 {
-        font-family: 'Outfit', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.375rem;
+        letter-spacing: -0.025em;
+    }
+    
+    .main-header h1 span {
+        color: var(--accent-primary);
     }
     
     .main-header p {
         color: var(--text-secondary);
-        font-size: 1.1rem;
-        font-weight: 300;
+        font-size: 0.975rem;
+        font-weight: 400;
     }
     
     /* Panel Styling */
     .panel {
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
         border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 1.5rem;
+        border-radius: 10px;
+        padding: 1.25rem;
         margin-bottom: 1rem;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow-sm);
     }
     
     .panel-header {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.625rem;
         margin-bottom: 1rem;
         padding-bottom: 0.75rem;
         border-bottom: 1px solid var(--border-color);
@@ -100,20 +112,20 @@ st.markdown("""
     
     .panel-header h3 {
         color: var(--text-primary);
-        font-family: 'Outfit', sans-serif;
-        font-size: 1.1rem;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 1rem;
         font-weight: 600;
         margin: 0;
     }
     
     .panel-icon {
-        font-size: 1.3rem;
+        font-size: 1.125rem;
     }
     
     /* PDF Viewer */
     .pdf-container {
-        background: #000;
-        border-radius: 12px;
+        background: var(--bg-tertiary);
+        border-radius: 8px;
         overflow: hidden;
         border: 1px solid var(--border-color);
     }
@@ -126,36 +138,39 @@ st.markdown("""
     
     /* Extracted Data Display */
     .field-card {
-        background: var(--bg-tertiary);
+        background: var(--bg-primary);
         border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1rem;
-        margin-bottom: 0.75rem;
-        transition: all 0.2s ease;
+        border-radius: 8px;
+        padding: 0.875rem 1rem;
+        margin-bottom: 0.625rem;
+        transition: all 0.15s ease;
     }
     
     .field-card:hover {
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 20px var(--accent-glow);
+        border-color: var(--accent-secondary);
+        box-shadow: var(--shadow-md);
     }
     
     .field-name {
-        color: var(--accent-secondary);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.85rem;
+        color: var(--accent-primary);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
         margin-bottom: 0.25rem;
     }
     
     .field-value {
         color: var(--text-primary);
-        font-size: 1rem;
+        font-size: 0.9375rem;
         font-weight: 500;
+        line-height: 1.4;
     }
     
     .confidence-bar {
-        height: 4px;
-        background: var(--bg-primary);
+        height: 3px;
+        background: var(--bg-tertiary);
         border-radius: 2px;
         margin-top: 0.5rem;
         overflow: hidden;
@@ -164,7 +179,7 @@ st.markdown("""
     .confidence-fill {
         height: 100%;
         border-radius: 2px;
-        transition: width 0.5s ease;
+        transition: width 0.4s ease;
     }
     
     .confidence-high { background: var(--success); }
@@ -175,124 +190,175 @@ st.markdown("""
     .status-badge {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 9999px;
-        font-size: 0.85rem;
+        gap: 0.375rem;
+        padding: 0.375rem 0.875rem;
+        border-radius: 6px;
+        font-size: 0.8125rem;
         font-weight: 500;
     }
     
     .status-success {
-        background: rgba(16, 185, 129, 0.15);
+        background: var(--success-light);
         color: var(--success);
-        border: 1px solid rgba(16, 185, 129, 0.3);
+        border: 1px solid rgba(5, 150, 105, 0.2);
     }
     
     .status-warning {
-        background: rgba(245, 158, 11, 0.15);
+        background: var(--warning-light);
         color: var(--warning);
-        border: 1px solid rgba(245, 158, 11, 0.3);
+        border: 1px solid rgba(217, 119, 6, 0.2);
     }
     
     .status-processing {
-        background: rgba(99, 102, 241, 0.15);
-        color: var(--accent-secondary);
-        border: 1px solid rgba(99, 102, 241, 0.3);
+        background: var(--accent-light);
+        color: var(--accent-primary);
+        border: 1px solid rgba(30, 64, 175, 0.2);
     }
     
     /* Buttons */
     .stButton > button {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        background: var(--accent-primary);
         color: white;
         border: none;
-        border-radius: 10px;
-        padding: 0.75rem 1.5rem;
-        font-family: 'Outfit', sans-serif;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        border-radius: 6px;
+        padding: 0.625rem 1.25rem;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: all 0.15s ease;
+        box-shadow: var(--shadow-sm);
     }
     
     .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+        background: #1e3a8a;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .stButton > button:active {
+        transform: translateY(1px);
     }
     
     /* Text Areas and Inputs */
     .stTextArea textarea, .stTextInput input {
-        background: var(--bg-tertiary) !important;
+        background: var(--bg-primary) !important;
         border: 1px solid var(--border-color) !important;
-        border-radius: 10px !important;
+        border-radius: 6px !important;
         color: var(--text-primary) !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        font-size: 0.9rem !important;
+        font-family: 'IBM Plex Mono', monospace !important;
+        font-size: 0.8125rem !important;
     }
     
     .stTextArea textarea:focus, .stTextInput input:focus {
-        border-color: var(--accent-primary) !important;
-        box-shadow: 0 0 0 2px var(--accent-glow) !important;
+        border-color: var(--border-focus) !important;
+        box-shadow: 0 0 0 3px var(--accent-light) !important;
     }
     
     /* File Uploader */
     .stFileUploader {
-        background: var(--bg-tertiary);
+        background: var(--bg-primary);
         border: 2px dashed var(--border-color);
-        border-radius: 12px;
-        padding: 2rem;
+        border-radius: 8px;
+        padding: 1.5rem;
         text-align: center;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
     }
     
     .stFileUploader:hover {
-        border-color: var(--accent-primary);
-        background: rgba(99, 102, 241, 0.05);
+        border-color: var(--accent-secondary);
+        background: var(--accent-light);
     }
     
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
         border-right: 1px solid var(--border-color);
     }
     
     [data-testid="stSidebar"] .block-container {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] h4 {
+        color: var(--text-primary) !important;
+        font-family: 'IBM Plex Sans', sans-serif !important;
+    }
+    
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label {
+        color: var(--text-secondary) !important;
     }
     
     /* Expander */
     .streamlit-expanderHeader {
         background: var(--bg-tertiary);
-        border-radius: 10px;
+        border-radius: 6px;
         color: var(--text-primary);
+        font-weight: 500;
     }
     
     /* Scrollbar */
     ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
     }
     
     ::-webkit-scrollbar-track {
-        background: var(--bg-primary);
+        background: var(--bg-tertiary);
     }
     
     ::-webkit-scrollbar-thumb {
         background: var(--border-color);
-        border-radius: 4px;
+        border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-        background: var(--accent-primary);
+        background: var(--text-muted);
     }
     
-    /* Animations */
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+    /* Typography Overrides */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-primary) !important;
+        font-family: 'IBM Plex Sans', sans-serif !important;
     }
     
-    .loading {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    p, span, label, div {
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+    
+    /* Info, Warning, Error boxes */
+    .stAlert {
+        border-radius: 6px;
+        border: none;
+    }
+    
+    /* Download button */
+    .stDownloadButton > button {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+    }
+    
+    .stDownloadButton > button:hover {
+        background: var(--bg-secondary);
+        border-color: var(--accent-secondary);
+    }
+    
+    /* Code blocks */
+    code {
+        background: var(--bg-tertiary);
+        color: var(--accent-primary);
+        padding: 0.125rem 0.375rem;
+        border-radius: 4px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.8125rem;
+    }
+    
+    /* Success message */
+    .stSuccess {
+        background: var(--success-light);
+        color: var(--success);
     }
     
     /* Hide Streamlit Branding */
@@ -378,7 +444,7 @@ def render_header():
     """Render the main header."""
     st.markdown("""
     <div class="main-header">
-        <h1>📄 DocExtract AI</h1>
+        <h1><span>DocExtract</span> AI</h1>
         <p>Intelligent document extraction with human-in-the-loop refinement</p>
     </div>
     """, unsafe_allow_html=True)
@@ -387,10 +453,10 @@ def render_header():
 def render_sidebar():
     """Render the sidebar with configuration options."""
     with st.sidebar:
-        st.markdown("### ⚙️ Configuration")
+        st.markdown("### Configuration")
         
         # JSON Schema Input
-        st.markdown("#### 📋 Extraction Schema")
+        st.markdown("#### Extraction Schema")
         st.markdown("*Define the fields you want to extract*")
         
         default_schema = '''{
@@ -447,14 +513,14 @@ def render_sidebar():
         
         # Session Info
         if st.session_state.session_id:
-            st.markdown("#### 📊 Session Info")
+            st.markdown("#### Session Info")
             st.code(f"ID: {st.session_state.session_id[:8]}...")
             
             if st.session_state.pdf_info:
                 st.markdown(f"**File:** {st.session_state.pdf_info.get('filename', 'Unknown')}")
                 st.markdown(f"**Pages:** {st.session_state.pdf_info.get('page_count', 0)}")
             
-            if st.button("🗑️ Clear Session", use_container_width=True):
+            if st.button("Clear Session", use_container_width=True):
                 for key in list(st.session_state.keys()):
                     del st.session_state[key]
                 st.rerun()
@@ -465,7 +531,6 @@ def render_pdf_viewer():
     st.markdown("""
     <div class="panel">
         <div class="panel-header">
-            <span class="panel-icon">📑</span>
             <h3>Document Viewer</h3>
         </div>
     </div>
@@ -480,7 +545,7 @@ def render_pdf_viewer():
         )
         
         if uploaded_file:
-            with st.spinner("📤 Uploading document..."):
+            with st.spinner("Uploading document..."):
                 result = upload_pdf(uploaded_file)
                 if result:
                     st.session_state.session_id = result["session_id"]
@@ -524,20 +589,19 @@ def render_extraction_panel():
     st.markdown("""
     <div class="panel">
         <div class="panel-header">
-            <span class="panel-icon">🎯</span>
             <h3>Extracted Data</h3>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
     if not st.session_state.pdf_uploaded:
-        st.info("📤 Upload a PDF to begin extraction")
+        st.info("Upload a PDF document to begin extraction")
         return
     
     # Extract Button
     if st.session_state.json_schema:
-        if st.button("🚀 Extract Fields", use_container_width=True, type="primary"):
-            with st.spinner("🔍 Analyzing document..."):
+        if st.button("Extract Fields", use_container_width=True, type="primary"):
+            with st.spinner("Analyzing document..."):
                 result = extract_fields(
                     st.session_state.session_id,
                     st.session_state.json_schema
@@ -546,7 +610,7 @@ def render_extraction_panel():
                     st.session_state.extraction_result = result
                     st.rerun()
     else:
-        st.warning("⚠️ Please provide a valid JSON schema in the sidebar")
+        st.warning("Please provide a valid JSON schema in the sidebar")
     
     # Display Results
     if st.session_state.extraction_result:
@@ -561,9 +625,9 @@ def render_extraction_panel():
         }.get(status, "status-processing")
         
         status_text = {
-            "validated": "✓ Validated",
-            "needs_review": "⚠ Needs Review",
-            "extracted": "● Extracted"
+            "validated": "Validated",
+            "needs_review": "Needs Review",
+            "extracted": "Extracted"
         }.get(status, status.title())
         
         st.markdown(f"""
@@ -610,7 +674,7 @@ def render_extraction_panel():
         
         # Feedback Section
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("### 💬 Human Feedback")
+        st.markdown("### Provide Feedback")
         
         feedback_text = st.text_area(
             "Provide corrections or additional context",
@@ -621,8 +685,8 @@ def render_extraction_panel():
         
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🔄 Re-extract with Feedback", use_container_width=True, disabled=not feedback_text):
-                with st.spinner("♻️ Re-processing with feedback..."):
+            if st.button("Re-extract with Feedback", use_container_width=True, disabled=not feedback_text):
+                with st.spinner("Re-processing with feedback..."):
                     result = submit_feedback(
                         st.session_state.session_id,
                         feedback_text
@@ -633,13 +697,13 @@ def render_extraction_panel():
                         st.rerun()
         
         with col2:
-            if st.button("✅ Accept Results", use_container_width=True):
-                st.success("Results accepted! ✓")
+            if st.button("Accept Results", use_container_width=True):
+                st.success("Results accepted!")
                 st.balloons()
         
         # Export Options
         st.markdown("<br>", unsafe_allow_html=True)
-        with st.expander("📥 Export Results"):
+        with st.expander("Export Results"):
             export_data = {
                 "session_id": st.session_state.session_id,
                 "filename": st.session_state.pdf_info.get("filename", ""),
